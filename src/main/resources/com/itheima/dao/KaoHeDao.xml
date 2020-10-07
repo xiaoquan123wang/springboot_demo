@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.itheima.dao.KaoHeDao">
+    <insert id="khadd" parameterType="com.itheima.pojo.KaoHe">
+        insert into kh_kaohe(name,month,score,wenben)
+        values
+        (#{name},#{month},#{score},#{wenben})
+    </insert>
+    <update id="updata" parameterType="com.itheima.pojo.KaoHe" >
+        update kh_kaohe
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="score != null">
+                score = #{score},
+            </if>
+            <if test="wenben != null">
+                wenben = #{wenben},
+            </if>
+        </set>
+        where name= #{name}
+    </update>
+    <select id="fandByid" parameterType="int" resultType="com.itheima.pojo.KaoHe">
+        select * from kh_kaohe where ke_id= #{keid}
+    </select>
+</mapper>
